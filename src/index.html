@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Countries API</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="bg-secondary">
+        <nav class="bg-primary">
+            <span style="font-weight: 800;">Where in the world?</span>
+            <a href="#" id="theme">
+                <ion-icon name="moon-outline"></ion-icon>
+                <span>Dark Mode</span>
+            </a>
+        </nav>
+    </header>
+    <main>
+        <div class="input-container">
+            <div id="search-container">
+                <ion-icon name="search-outline" id="search-icon"></ion-icon>
+                <input type="text" id="search" placeholder="Search for a country...">
+            </div>
+            <select id="filter" aria-label="Default select example">
+                <option selected>Filter by Region</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="cards-list d-flex">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card’s content.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
