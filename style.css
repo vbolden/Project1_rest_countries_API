@@ -37,3 +37,29 @@ main {
     padding: 45px;
     justify-content: space-between;
 }
+
+#search-container {
+    padding: 10px 25px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2);
+}
+
+#search {
+    width: 15rem;
+    border: none;
+    padding: 5px;
+}
+
+#search::placeholder, #search-icon {
+    color: hsl(0, 2%, 65%);
+}
+
+#filter {
+    width: 10rem;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2);
+    color: hsla(200, 15%, 8%, 0.828);
+}
