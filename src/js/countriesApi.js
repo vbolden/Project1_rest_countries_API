@@ -28,7 +28,7 @@ async function getCountries() {
 function renderCountries(data) {
     cardList.innerHTML = "";
 
-    if(data == "") {
+    if (data == "") {
         let empty = document.createElement("p");
         empty.innerHTML = "No Results Found..."
         cardList.appendChild(empty);
@@ -67,14 +67,14 @@ function searchAndFilter() {
     const searchValue = searchInput.value.toLowerCase();
     const selectedRegion = filterList.value;
 
-    if(searchValue) {
-        result = result.filter(country => 
+    if (searchValue) {
+        result = result.filter(country =>
             country.name.common.toLowerCase().includes(searchValue)
         );
     }
 
-    if(selectedRegion !== "All") {
-        result = result.filter(country => 
+    if (selectedRegion !== "All") {
+        result = result.filter(country =>
             country.region === selectedRegion
         )
     }
