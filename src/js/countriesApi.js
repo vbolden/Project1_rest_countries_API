@@ -28,6 +28,12 @@ async function getCountries() {
 function renderCountries(data) {
     cardList.innerHTML = "";
 
+    if(data == "") {
+        let empty = document.createElement("p");
+        empty.innerHTML = "No Results Found..."
+        cardList.appendChild(empty);
+    }
+
     data.forEach(country => {
         const name = country.name.common;
         const flag = country.flags.png;
@@ -39,7 +45,7 @@ function renderCountries(data) {
         card.className = "col-12 col-md-6 col-lg-3"
         card.innerHTML = `
         <div class="card-wrapper">
-            <div class="card">
+            <div class="card shadow-sm border-0">
                 <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
                 <div class="card-body p-4">
                     <h5 class="card-title fw-bold">${name}</h5>
