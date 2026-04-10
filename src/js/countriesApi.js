@@ -1,19 +1,17 @@
-let countries = [];
-let filteredCountries = [];
+let countriesData = [];
 
-countries = data;
-filteredCountries = data;
+window.addEventListener("load", getCountries)
 
-async function getAllCountries() {
+async function getCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,region,subregion,cca3,population")
-        if(!response.ok) {
-            throw new Error
-        }
+        const response = await fetch("https://restcountries.com/v3.1/all");
         const data = await response.json();
-        return data
-    } catch(error) {
-        console.error("Error message: ", error);
-        return []
+
+        countriesData = data;
+
+        renderCountries(countriesData);
+
+    } catch (error) {
+        console.log(error)
     }
 }
