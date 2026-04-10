@@ -2,9 +2,12 @@
 let countriesData = [];
 const cardList = document.getElementById("cards-list");
 const searchInput = document.getElementById("search");
+const filterList = document.getElementById("filter")
 
-// WINDOW LOAD EVENT LISTENER
-window.addEventListener("load", getCountries)
+// EVENT LISTENERS
+window.addEventListener("load", getCountries);
+searchInput.addEventListener("input", searchAndFilter);
+filterList.addEventListener("change", searchAndFilter);
 
 // API FETCH FUNCTION
 async function getCountries() {
@@ -51,18 +54,24 @@ function renderCountries(data) {
     })
 };
 
-// SEARCH COUNTRIES BY NAME 
-searchInput.addEventListener("input", () => {
-    const searchValue = searchInput.value.toLowerCase();
+// SEARCH & FILTER COUNTRIES FUNCTION 
+function searchAndFilter() {
+    let result = countriesData;
 
-    if (searchValue === "") {
-        renderCountries(countriesData);
-        return;
+    const searchValue = searchInput.value.toLowerCase();
+    const selectedRegion = filterList.value;
+
+    if(searchValue) {
+        result = result.filter(country => 
+            country.name.common.toLowerCase().includes(searchValue)
+        );
     }
 
-    const filteredCountries = countriesData.filter(country =>
-        country.name.common.toLowerCase().includes(searchValue)
-    )
+    if(selectedRegion !== "All") {
+        result = result.filter(country => 
+            country.region === selectedRegion
+        )
+    }
 
-    renderCountries(filteredCountries);
-})
+    renderCountries(result)
+} 
