@@ -33,15 +33,17 @@ function renderCountries(data) {
         let capital = country.capital ? country.capital[0] : "N/A";
 
         let card = document.createElement("div")
-        card.className = "col-12 col-md-6 col-lg-3 mb-4"
+        card.className = "col-12 col-md-6 col-lg-3"
         card.innerHTML = `
-        <div class="card h-100 d-flex flex-column">
-            <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
-            <div class="card-body">
-                <h5 class="card-title">${name}</h5>
-                <p class="card-text">Population: ${population.toLocaleString()}</p>
-                <p class="card-text">Region: ${region}</p>
-                <p class="card-text">Capital: ${capital}</p>
+        <div class="card-wrapper">
+            <div class="card">
+                <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
+                <div class="card-body p-4">
+                    <h5 class="card-title fw-bold">${name}</h5>
+                    <p class="card-text mt-3">Population: <span>${population.toLocaleString()}</span></p>
+                    <p class="card-text">Region: <span>${region}</span></p>
+                    <p class="card-text">Capital: <span>${capital}</span></p>
+                </div>
             </div>
         </div>`;
 
