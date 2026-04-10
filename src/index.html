@@ -25,20 +25,31 @@
         </nav>
     </header>
     <main>
-        <div class="input-container">
-            <div id="search-container">
-                <ion-icon name="search-outline" id="search-icon"></ion-icon>
-                <input type="text" id="search" placeholder="Search for a country...">
+
+        <div class="container-fluid px-5 my-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div style="max-width: 350px; width: 100%;">
+                    <div id="search-container" class="d-flex align-items-center gap-2 p-2 shadow-sm bg-white rounded">
+                        <ion-icon name="search-outline" id="search-icon"></ion-icon>
+                        <input type="text" id="search" class="form-control border-0"
+                            placeholder="Search for a country...">
+                    </div>
+                </div>
+                
+                <div style="width: 200px;">
+                    <select id="filter" class="form-select shadow-sm">
+                        <option selected>Filter by Region</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Americas">Americas</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </div>
             </div>
-            <select id="filter" aria-label="Default select example">
-                <option selected>Filter by Region</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
         </div>
-        <div class="row" id="cards-list">
-        </div>
+
+        <div class="row px-5 g-4" id="cards-list"></div>
     </main>
 </body>
 

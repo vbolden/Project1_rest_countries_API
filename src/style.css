@@ -22,16 +22,6 @@ nav a {
     color: hsl(200, 15%, 8%);
 }
 
-main {
-    height: 100vh;
-}
-
-.input-container {
-    display: flex;
-    padding: 45px;
-    justify-content: space-between;
-}
-
 #search-container {
     padding: 10px 25px;
     background-color: white;
@@ -39,10 +29,14 @@ main {
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2);
 }
 
+.search-wrapper {
+    max-width: 350px;
+    width: 100%;
+}
+
 #search {
-    width: 15rem;
     border: none;
-    padding: 5px;
+    outline: none;
 }
 
 #search::placeholder,
@@ -51,23 +45,18 @@ main {
 }
 
 #filter {
-    width: 10rem;
-    text-align: center;
+    border: none;
+    outline: none;
     border: none;
     border-radius: 5px;
     box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2);
     color: hsla(200, 15%, 8%, 0.828);
 }
 
-#cards-list {
-    padding: 45px;
-    height: 100vh;
-}
-
 .card {
     background-color: hsl(0, 0%, 100%);
     border-radius: 5px;
-    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .country-flag {
