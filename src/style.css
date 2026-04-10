@@ -53,6 +53,11 @@ nav a {
     color: hsla(200, 15%, 8%, 0.828);
 }
 
+.card-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
 .card {
     background-color: hsl(0, 0%, 100%);
     border-radius: 5px;
@@ -65,8 +70,12 @@ nav a {
     object-fit: cover;
 }
 
-.card-body {
-    padding: 20px;
+.card-body p {
+    margin-bottom: 0;
+}
+
+.card-body p span {
+    color: hsla(200, 15%, 8%, 0.712);
 }
 
 .body-dark {
