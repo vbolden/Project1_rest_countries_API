@@ -14,6 +14,8 @@ filterList.addEventListener("change", searchAndFilter);
 themeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     changeTheme();
+
+
 });
 
 // API FETCH FUNCTION
@@ -87,11 +89,11 @@ function searchAndFilter() {
     }
 
     renderCountries(result)
-} 
+}
 
 // THEME SWITCHING FUNCTION
 function changeTheme() {
     document.body.classList.toggle("dark-mode");
-    themeText.innerHTML = (themeText.innerHTML === "Dark Mode") ? "Light Mode": "Dark Mode";
-    themeIcon.name = (themeIcon.name === "moon-outline") ? "sunny-outline": "moon-outline";
+    themeText.innerHTML = (themeText.innerHTML === "Dark Mode") ? "Light Mode" : "Dark Mode";
+    themeIcon.name = (themeIcon.name === "moon-outline") ? "sunny" : "moon-outline";
 }
