@@ -45,6 +45,10 @@ nav a {
     color: hsla(200, 15%, 8%, 0.828);
 }
 
+#filter:hover {
+    cursor: pointer;
+}
+
 .card-wrapper {
     max-width: 300px;
     margin: 0 auto;
