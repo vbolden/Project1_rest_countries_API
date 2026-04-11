@@ -60,6 +60,10 @@ nav a {
     overflow: hidden;
 }
 
+.card:hover {
+    cursor: pointer;
+}
+
 .country-flag {
     width: 100%;
     height: 180px;
