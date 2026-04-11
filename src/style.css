@@ -60,23 +60,14 @@ nav a {
     overflow: hidden;
 }
 
+.card:hover {
+    transform: scale(105%);
+}
+
 .country-flag {
     width: 100%;
     height: 180px;
     object-fit: cover;
-}
-
-.country-title {
-    text-decoration: none;
-    color: hsl(200, 15%, 8%);
-}
-
-.country-title:hover {
-    text-decoration: underline;
-    color: hsl(200, 15%, 8%);
-    cursor: pointer;
-    display: inline-block;
-    transform: scale(115%);
 }
 
 .card-body p {
@@ -101,8 +92,7 @@ body.dark-mode #back-btn  {
 body.dark-mode #search::placeholder,
 body.dark-mode #search-icon,
 body.dark-mode #theme-icon,
-body.dark-mode #theme-text,
-body.dark-mode .country-title {
+body.dark-mode #theme-text {
     color: hsl(0, 0%, 100%);
 }
 
