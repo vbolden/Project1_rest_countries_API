@@ -8,14 +8,23 @@ const themeIcon = document.getElementById("theme-icon")
 const themeText = document.getElementById("theme-text");
 
 // EVENT LISTENERS
-window.addEventListener("load", getCountries);
+window.addEventListener("load", () => {
+    getCountries();
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+
+    }
+});
 searchInput.addEventListener("input", searchAndFilter);
 filterList.addEventListener("change", searchAndFilter);
 themeBtn.addEventListener("click", (e) => {
     e.preventDefault();
     changeTheme();
 
-
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+    }
 });
 
 // API FETCH FUNCTION
@@ -94,6 +103,14 @@ function searchAndFilter() {
 // THEME SWITCHING FUNCTION
 function changeTheme() {
     document.body.classList.toggle("dark-mode");
-    themeText.innerHTML = (themeText.innerHTML === "Dark Mode") ? "Light Mode" : "Dark Mode";
-    themeIcon.name = (themeIcon.name === "moon-outline") ? "sunny" : "moon-outline";
+
+    if (document.body.classList.contains("dark-mode")) {
+        themeText.innerHTML = "Light Mode";
+        themeIcon.name = "sunny";
+        localStorage.setItem("theme", "dark")
+    } else {
+        themeText.innerHTML = "Dark Mode";
+        themeIcon.name = "moon-outline";
+        localStorage.setItem("theme", "light");
+    }
 }
