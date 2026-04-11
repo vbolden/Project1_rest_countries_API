@@ -63,7 +63,7 @@ function renderCountries(data) {
 
         cardList.appendChild(card);
 
-        card.addEventListener("click", (e) => {
+        card.addEventListener("click", () => {
             window.location.href = `details.html?code=${code}`
         })
     })
