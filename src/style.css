@@ -62,6 +62,7 @@ nav a {
 
 .card:hover {
     transform: scale(105%);
+    cursor: pointer;
 }
 
 .country-flag {
