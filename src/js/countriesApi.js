@@ -2,12 +2,19 @@
 let countriesData = [];
 const cardList = document.getElementById("cards-list");
 const searchInput = document.getElementById("search");
-const filterList = document.getElementById("filter")
+const filterList = document.getElementById("filter");
+const themeBtn = document.getElementById("theme");
+const themeIcon = document.getElementById("theme-icon")
+const themeText = document.getElementById("theme-text");
 
 // EVENT LISTENERS
 window.addEventListener("load", getCountries);
 searchInput.addEventListener("input", searchAndFilter);
 filterList.addEventListener("change", searchAndFilter);
+themeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    changeTheme();
+});
 
 // API FETCH FUNCTION
 async function getCountries() {
@@ -49,9 +56,9 @@ function renderCountries(data) {
                 <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
                 <div class="card-body p-4">
                     <h5 class="card-title fw-bold">${name}</h5>
-                    <p class="card-text mt-3">Population: <span>${population.toLocaleString()}</span></p>
-                    <p class="card-text">Region: <span>${region}</span></p>
-                    <p class="card-text">Capital: <span>${capital}</span></p>
+                    <p class="card-text mt-3">Population: ${population.toLocaleString()}</p>
+                    <p class="card-text">Region: ${region}</p>
+                    <p class="card-text">Capital: ${capital}</p>
                 </div>
             </div>
         </div>`;
@@ -81,3 +88,10 @@ function searchAndFilter() {
 
     renderCountries(result)
 } 
+
+// THEME SWITCHING FUNCTION
+function changeTheme() {
+    document.body.classList.toggle("dark-mode");
+    themeText.innerHTML = (themeText.innerHTML === "Dark Mode") ? "Light Mode": "Dark Mode";
+    themeIcon.name = (themeIcon.name === "moon-outline") ? "sunny-outline": "moon-outline";
+}
