@@ -16,7 +16,7 @@ filterList.addEventListener("change", searchAndFilter);
 // API FETCH FUNCTION
 async function getCountries() {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital");
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca3");
         const data = await response.json();
 
         countriesData = data;
@@ -43,6 +43,7 @@ function renderCountries(data) {
         const flag = country.flags.png;
         const population = country.population;
         const region = country.region;
+        const code = country.cca3;
         let capital = country.capital ? country.capital[0] : "N/A";
 
         let card = document.createElement("div")
@@ -52,7 +53,7 @@ function renderCountries(data) {
             <div class="card shadow-sm border-0">
                 <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-bold"><a href="#" class="country-title">${name}</a></h5>
+                    <h5 class="card-title fw-bold">${name}</h5>
                     <p class="card-text mt-3">Population: ${population.toLocaleString()}</p>
                     <p class="card-text">Region: ${region}</p>
                     <p class="card-text">Capital: ${capital}</p>
@@ -61,6 +62,10 @@ function renderCountries(data) {
         </div>`;
 
         cardList.appendChild(card);
+
+        card.addEventListener("click", (e) => {
+            window.location.href = `details.html?code=${code}`
+        })
     })
 };
 
