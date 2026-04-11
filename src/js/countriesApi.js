@@ -12,9 +12,11 @@ window.addEventListener("load", () => {
     getCountries();
 
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-
-    }
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeText.innerHTML = "Light Mode";
+        themeIcon.name = "sunny";
+    } 
 });
 searchInput.addEventListener("input", searchAndFilter);
 filterList.addEventListener("change", searchAndFilter);
