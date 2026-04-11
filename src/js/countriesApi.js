@@ -3,31 +3,15 @@ let countriesData = [];
 const cardList = document.getElementById("cards-list");
 const searchInput = document.getElementById("search");
 const filterList = document.getElementById("filter");
-const themeBtn = document.getElementById("theme");
-const themeIcon = document.getElementById("theme-icon")
-const themeText = document.getElementById("theme-text");
+
 
 // EVENT LISTENERS
 window.addEventListener("load", () => {
     getCountries();
-
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-        themeText.innerHTML = "Light Mode";
-        themeIcon.name = "sunny";
-    } 
 });
 searchInput.addEventListener("input", searchAndFilter);
 filterList.addEventListener("change", searchAndFilter);
-themeBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    changeTheme();
 
-    if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("theme", "dark");
-    }
-});
 
 // API FETCH FUNCTION
 async function getCountries() {
@@ -68,7 +52,7 @@ function renderCountries(data) {
             <div class="card shadow-sm border-0">
                 <img src="${flag}" class="card-img-top country-flag" alt="${name}'s flag">
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-bold">${name}</h5>
+                    <h5 class="card-title fw-bold"><a href="#" class="country-title">${name}</a></h5>
                     <p class="card-text mt-3">Population: ${population.toLocaleString()}</p>
                     <p class="card-text">Region: ${region}</p>
                     <p class="card-text">Capital: ${capital}</p>
@@ -100,19 +84,4 @@ function searchAndFilter() {
     }
 
     renderCountries(result)
-}
-
-// THEME SWITCHING FUNCTION
-function changeTheme() {
-    document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-        themeText.innerHTML = "Light Mode";
-        themeIcon.name = "sunny";
-        localStorage.setItem("theme", "dark")
-    } else {
-        themeText.innerHTML = "Dark Mode";
-        themeIcon.name = "moon-outline";
-        localStorage.setItem("theme", "light");
-    }
 }
