@@ -5,7 +5,6 @@ let countryCode = currentUrl.get("code");
 // console.log(countryCode);
 const flagEl = document.getElementById("flag-container");
 const detailsEl = document.getElementById("details-container");
-const bordersEl = document.getElementById("borders-container");
 const backBtn = document.getElementById("back-btn");
 
 // EVENT LISTENERS
@@ -86,25 +85,34 @@ async function getBorderCountries(data) {
 
 // RENDER COUNTRY DETAILS FUNCTION 
 function renderDetails(data, borders) {
-    flagEl.innerHTML = `<img src="${data.flag}" alt="${data.flagAlt}">`;
-
-    detailsEl.innerHTML = `
-    <h3 class="fw-bold mb-4">${data.name}</h3>
-    <p><strong>Native Name: </strong>${data.nativeName}</p>
-    <p><strong>Population: </strong>${data.population}</p>
-    <p><strong>Region: </strong>${data.region}</p>
-    <p><strong>Sub Region: </strong>${data.subRegion}</p>
-    <p><strong>Capital: </strong>${data.capital}</p>
-    <p><strong>Top Level Domain: </strong>${data.topLevelDomain}</p>
-    <p><strong>Languages: </strong>${data.language}</p>
-    <p><strong>Currencies: </strong>${data.currencies}</p>
-    `;
+    flagEl.innerHTML = `<img src="${data.flag}" alt="${data.flagAlt}" class="w-100 shadow">`;
 
     const borderHTML = borders.length
         ? borders.map(border =>
-            `<a href="details.html?code=${border.code}" class="btn btn-sm shadow-sm m-1">${border.name}</a>`)
+            `<a href="details.html?code=${border.code}" class="btn btn-sm px-4 shadow border-0 border-btn m-1">${border.name}</a>`)
             .join('') : "<p>No Border Countries</p>";
-    bordersEl.innerHTML = borderHTML;
+
+    detailsEl.innerHTML = `
+    <h3 class="fw-bold mb-4">${data.name}</h3>
+    <div class="row mb-5">
+        <div class="col">
+            <p><strong>Native Name: </strong>${data.nativeName}</p>
+            <p><strong>Population: </strong>${data.population}</p>
+            <p><strong>Region: </strong>${data.region}</p>
+            <p><strong>Sub Region: </strong>${data.subRegion}</p>
+            <p><strong>Capital: </strong>${data.capital}</p>
+        </div>
+        <div class="col">
+            <p><strong>Top Level Domain: </strong>${data.topLevelDomain}</p>
+            <p><strong>Languages: </strong>${data.language}</p>
+            <p><strong>Currencies: </strong>${data.currencies}</p>
+        </div>
+    </div>
+    
+    <div class="d-flex flex-wrap align-items-center mt-4">
+        <strong class="me-3">Border Countries: </strong>
+        ${borderHTML}
+    </div>`;
 
     // console.log(borders);
 }
