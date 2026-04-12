@@ -5,6 +5,7 @@ let countryCode = currentUrl.get("code");
 // console.log(countryCode);
 const flagEl = document.getElementById("flag-container");
 const detailsEl = document.getElementById("details-container");
+const bordersEl = document.getElementById("borders-container");
 
 // EVENT LISTENER FOR PAGE LOADING
 window.addEventListener("load", getDetails);
@@ -18,7 +19,10 @@ async function getDetails() {
         // console.log(data)
 
         const transformedData = transformData(country);
-        renderDetails(transformedData);
+
+        const borderCountries = await getBorderCountries(country);
+
+        renderDetails(transformedData, borderCountries);
 
     } catch (error) {
         console.error("Error: ", error);
@@ -43,14 +47,38 @@ function transformData(country) {
     const currencies = country.currencies ? Object.values(country.currencies)[0].name : "N/A";
     // console.log(language, currencies);
 
-    const nativeName = country.name.nativeName && Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].official : "N/A"
+    const nativeName = country.name.nativeName && Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].official : "N/A";
 
     const countryObj = { flag, flagAlt, name, population, region, subRegion, capital, topLevelDomain, language, currencies, nativeName }
     return countryObj
 }
 
+// FUNCTION FOR BORDER COUNTRIES
+async function getBorderCountries(data) {
+    const borders = data.borders || [];
+
+    if (borders.length === 0) return [];
+
+    const borderNames = [];
+
+    for (let i = 0; i < borders.length; i++) {
+        const code = borders[i];
+
+        try {
+            const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+            const data = await response.json();
+
+            const name = data[0].name.common;
+            borderNames.push(name);
+        } catch (error) {
+            console.error("Error: ", error);
+        }
+    }
+    return borderNames;
+}
+
 // RENDER COUNTRY DETAILS FUNCTION 
-function renderDetails(data) {
+function renderDetails(data, borders) {
     flagEl.innerHTML = `<img src="${data.flag}" alt="${data.flagAlt}">`;
 
     detailsEl.innerHTML = `
@@ -63,5 +91,8 @@ function renderDetails(data) {
     <p><strong>Top Level Domain: </strong>${data.topLevelDomain}</p>
     <p><strong>Languages: </strong>${data.language}</p>
     <p><strong>Currencies: </strong>${data.currencies}</p>
-    `
+    `;
+
+    const borderHTML = borders.length ? borders.map(name => `<button>${name}</button>`).join('') : "<p>No Border Countries</p>";
+    bordersEl.innerHTML = borderHTML;
 }
