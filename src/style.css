@@ -107,4 +107,28 @@ body, .card, header, #filter, #search, #search-container {
 
 #back-btn {
     background-color: hsl(0, 0%, 100%);
+    border-radius: 3px;
+}
+
+#back-btn:hover {
+    transform: scale(105%);
+    font-weight: bold;
+}
+
+.btn.border-btn {
+    border-radius: 3px;
+    color: hsl(200, 15%, 8%);
+    font-size: 12px;
+    transition: ease;
+}
+
+body.dark-mode .border-btn {
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(209, 23%, 22%);
+}
+
+.border-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    transform: translateY(-2px);
 }
