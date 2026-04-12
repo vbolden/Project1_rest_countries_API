@@ -34,10 +34,10 @@ function transformData(country) {
     const population = country.population.toLocaleString();
     const region = country.region;
     const subRegion = country?.subregion || "N/A";
-    let capital = country.capital?.[0] || "N/A";
-    let topLevelDomain = country.tld?.[0] || "N/A";
+    const capital = country.capital?.[0] || "N/A";
+    const topLevelDomain = country.tld?.[0] || "N/A";
     // console.log(name, population,region,subRegion,capital, flag, topLevelDomain);
-    
+
 
     const language = country.languages ? Object.values(country.languages).join(',') : "N/A";
     const currencies = country.currencies ? Object.values(country.currencies)[0].name : "N/A";
@@ -45,7 +45,7 @@ function transformData(country) {
 
     const nativeName = country.name.nativeName && Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].official : "N/A"
 
-    const countryObj = {flag,flagAlt, name, population, region, subRegion, capital, topLevelDomain, language, currencies, nativeName}
+    const countryObj = { flag, flagAlt, name, population, region, subRegion, capital, topLevelDomain, language, currencies, nativeName }
     return countryObj
 }
 
