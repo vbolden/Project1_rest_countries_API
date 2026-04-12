@@ -69,7 +69,10 @@ async function getBorderCountries(data) {
             const data = await response.json();
 
             const name = data[0].name.common;
-            borderNames.push(name);
+            const countryCode = data[0].cca3;
+
+            borderNames.push({ name, code: countryCode });
+
         } catch (error) {
             console.error("Error: ", error);
         }
@@ -93,6 +96,11 @@ function renderDetails(data, borders) {
     <p><strong>Currencies: </strong>${data.currencies}</p>
     `;
 
-    const borderHTML = borders.length ? borders.map(name => `<button>${name}</button>`).join('') : "<p>No Border Countries</p>";
+    const borderHTML = borders.length
+        ? borders.map(border =>
+            `<a href="details.html?code=${border.code}" class="btn btn-sm shadow-sm m-1">${border.name}</a>`)
+            .join('') : "<p>No Border Countries</p>";
     bordersEl.innerHTML = borderHTML;
+
+    // console.log(borders);
 }
