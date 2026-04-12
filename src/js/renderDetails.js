@@ -6,9 +6,13 @@ let countryCode = currentUrl.get("code");
 const flagEl = document.getElementById("flag-container");
 const detailsEl = document.getElementById("details-container");
 const bordersEl = document.getElementById("borders-container");
+const backBtn = document.getElementById("back-btn");
 
-// EVENT LISTENER FOR PAGE LOADING
+// EVENT LISTENERS
 window.addEventListener("load", getDetails);
+backBtn.addEventListener("click", () => {
+    window.history.back();
+})
 
 // FETCH DATA FUNCTION
 async function getDetails() {
@@ -85,7 +89,7 @@ function renderDetails(data, borders) {
     flagEl.innerHTML = `<img src="${data.flag}" alt="${data.flagAlt}">`;
 
     detailsEl.innerHTML = `
-    <h2 class="fw-bold mb-4">${data.name}</h2>
+    <h3 class="fw-bold mb-4">${data.name}</h3>
     <p><strong>Native Name: </strong>${data.nativeName}</p>
     <p><strong>Population: </strong>${data.population}</p>
     <p><strong>Region: </strong>${data.region}</p>
