@@ -15,7 +15,7 @@ async function getDetails() {
         const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
         const data = await response.json();
         const country = data[0];
-        console.log(data)
+        // console.log(data)
 
         const transformedData = transformData(country);
         renderDetails(transformedData);
@@ -36,12 +36,16 @@ function transformData(country) {
     const subRegion = country?.subregion || "N/A";
     let capital = country.capital?.[0] || "N/A";
     let topLevelDomain = country.tld?.[0] || "N/A";
-    console.log(name, population,region,subRegion,capital, flag, topLevelDomain);
+    // console.log(name, population,region,subRegion,capital, flag, topLevelDomain);
+    
 
-    // const currencies = data[0].currencies
-    // const languages = data[0].languages
+    const language = country.languages ? Object.values(country.languages).join(',') : "N/A";
+    const currencies = country.currencies ? Object.values(country.currencies)[0].name : "N/A";
+    // console.log(language, currencies);
 
-    const countryObj = {flag,flagAlt, name, population, region, subRegion, capital, topLevelDomain}
+    const nativeName = country.name.nativeName && Object.values(country.name.nativeName).length > 0 ? Object.values(country.name.nativeName)[0].official : "N/A"
+
+    const countryObj = {flag,flagAlt, name, population, region, subRegion, capital, topLevelDomain, language, currencies, nativeName}
     return countryObj
 }
 
@@ -51,10 +55,13 @@ function renderDetails(data) {
 
     detailsEl.innerHTML = `
     <h2 class="fw-bold mb-4">${data.name}</h2>
+    <p><strong>Native Name: </strong>${data.nativeName}</p>
     <p><strong>Population: </strong>${data.population}</p>
     <p><strong>Region: </strong>${data.region}</p>
     <p><strong>Sub Region: </strong>${data.subRegion}</p>
     <p><strong>Capital: </strong>${data.capital}</p>
     <p><strong>Top Level Domain: </strong>${data.topLevelDomain}</p>
+    <p><strong>Languages: </strong>${data.language}</p>
+    <p><strong>Currencies: </strong>${data.currencies}</p>
     `
 }
