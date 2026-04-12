@@ -10,7 +10,7 @@ const backBtn = document.getElementById("back-btn");
 // EVENT LISTENERS
 window.addEventListener("load", getDetails);
 backBtn.addEventListener("click", () => {
-    window.history.back();
+    window.location.href = "index.html";
 })
 
 // FETCH DATA FUNCTION
@@ -90,10 +90,10 @@ function renderDetails(data, borders) {
     const borderHTML = borders.length
         ? borders.map(border =>
             `<a href="details.html?code=${border.code}" class="btn btn-sm px-4 shadow border-0 border-btn m-1">${border.name}</a>`)
-            .join('') : "<p>No Border Countries</p>";
+            .join('') : "<span>No Border Countries</span>";
 
     detailsEl.innerHTML = `
-    <h3 class="fw-bold mb-4">${data.name}</h3>
+    <h2 class="fw-bold mb-4">${data.name}</h2>
     <div class="row mb-5">
         <div class="col">
             <p><strong>Native Name: </strong>${data.nativeName}</p>
