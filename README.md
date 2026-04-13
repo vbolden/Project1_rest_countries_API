@@ -9,9 +9,8 @@ This is my solution to the [REST Countries API with color theme switcher challen
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
-  - [What I learned](#what-i-learned)
+  - [Reflection](#reflection)
 
 
 ## Overview
@@ -42,12 +41,6 @@ Users should be able to:
 - JavaScript
 
 
-### Continued development
-
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-
-
 ### Useful resources
 
 - Module 5 Lesson 6 (Per Scholas)
@@ -59,20 +52,48 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 # Reflection
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+My development process for this project was a little rough starting out. I restructured my folders and files a lot throughout this project, but eventually I came up with a project plan to help me organize better. My first step was creating a simple HTML layout for the main page and basic CSS styling to give the page structure. Then I moved on to JS, where I started with writing my fetch, render, theme, and search and filter functions. After I was finished with those I moved on to the details page and again gave it a simple HTML layout and basic CSS styling. I then moved my theme function to its own js file since it would be the only function shared between the 2 HTML pages. I then moved on to writing the functionality of the details page in another js file. I faced a lot of challenges especially with the API fetching, I had to refer back to notes and the lessons for most of it. Writing the functionality for the details was probably the biggest challenge because it was more intricate. Especially when it came to fetching data that had objects nested in arrays, but using my resources I was able to look up different methods and utilites to help me write the functions. For future projects I'll need to work on spending a little more time on planning out my project before I start creating any folders or files to avoid deleting and moving them multiple times. Also, I'll continue researching and learning about more JavaScript methods.
 
-To see how you can add code snippets, see below:
+Code snippets I want to highlight:
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<div style="max-width: 350px; width: 100%;">
+                    <div id="search-container" class="d-flex align-items-center gap-2 p-1 shadow-sm rounded">
+                        <ion-icon name="search-outline" id="search-icon"></ion-icon>
+                        <input type="text" id="search" class="form-control border-0"
+                            placeholder="Search for a country...">
+                    </div>
+                </div>
 ```
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+body.dark-mode #theme-text {
+    color: hsl(0, 0%, 100%);
 }
 ```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+async function getBorderCountries(data) {
+    const borders = data.borders || [];
+
+    if (borders.length === 0) return [];
+
+    const borderNames = [];
+
+    for (let i = 0; i < borders.length; i++) {
+        const code = borders[i];
+
+        try {
+            const response = await fetch(`https://restcountries.com/v3.1/alpha/${code}`);
+            const data = await response.json();
+
+            const name = data[0].name.common;
+            const countryCode = data[0].cca3;
+
+            borderNames.push({ name, code: countryCode });
+
+        } catch (error) {
+            console.error("Error: ", error);
+        }
+    }
+    return borderNames;
 }
 ```
